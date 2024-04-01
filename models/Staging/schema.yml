@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: "Dimension table for customers"
+    columns:
+      - name: customer_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_product_inc
+    description: "Incremental dimension table for products"
+    columns:
+      - name: product_id
+        description: "The primary key for this table"
+        tests:
+          - not_null
+
+  - name: sales_order_items_by_year
+    description: "Fact table for sales order items by year"
+    columns:
+      - name: order_date
+        description: "The primary key for this table"
+        tests:
+          - not_null
+
+  - name: yearly_sales_growth
+    description: "Fact table for yearly sales growth"
+    columns:
+      - name: territory_id
+        description: "The primary key for this table"
+        tests:
+          - not_null
+
+  - name: yearly_sales_person
+    description: "Fact table for yearly sales by person"
+    columns:
+      - name: territory_id
+        description: "The primary key for this table"
+        tests:
+          - not_null
+
+  - name: product_category_top3_territory
+    description: "Fact table for product category in top 3 territories"
+    columns:
+      - name: territory_id
+        description: "The primary key for this table"
+        tests:
+          - not_null
+
+sources:
+  - name: stg
+    database: adventure_db
+    schema: stg
+    tables:
+      - name: customer
+      - name: salesterritory
+      - name: product
+      - name: productcategory
+      - name: productsubcategory
+      - name: salesorderdetail
+      - name: salesorderheader

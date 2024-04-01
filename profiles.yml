@@ -1,0 +1,11 @@
+dbt_assignment:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      port: 5432
+      user: postgres
+      pass: "2512"  # Enclose the password in quotes to indicate it's a string
+      dbname: AdventureDB
+      schema: stg
